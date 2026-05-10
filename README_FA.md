@@ -284,9 +284,9 @@ netlify deploy --prod
 
 | چیزی که باز می‌کنی | مقصدی که به آن وصل می‌شود |
 |---|---|
-| `https://your-site.netlify.app/` | `https://your-domain.com:443/` |
-| `https://your-site.netlify.app/path` | `https://your-domain.com:443/path` |
-| `https://your-site.netlify.app/api/test` | `https://your-domain.com:443/api/test` |
+| `https://your-site.netlify.app/relay/` | `https://your-domain.com:443/` |
+| `https://your-site.netlify.app/relay/path` | `https://your-domain.com:443/path` |
+| `https://your-site.netlify.app/relay/api/test` | `https://your-domain.com:443/api/test` |
 
 ---
 
@@ -295,7 +295,7 @@ netlify deploy --prod
 مقدارهای نمونه را با اطلاعات خودت جایگزین کن.
 
 ```txt
-vless://UUID@YOUR_NETLIFY_DOMAIN:443?encryption=none&security=tls&sni=YOUR_NETLIFY_DOMAIN&fp=chrome&alpn=h2%2Chttp%2F1.1&insecure=0&allowInsecure=0&type=xhttp&host=YOUR_NETLIFY_DOMAIN&path=YOUR_PATH&mode=auto&extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D#net
+vless://UUID@YOUR_NETLIFY_DOMAIN:443?encryption=none&security=tls&sni=YOUR_NETLIFY_DOMAIN&fp=chrome&alpn=h2%2Chttp%2F1.1&insecure=0&allowInsecure=0&type=xhttp&host=YOUR_NETLIFY_DOMAIN&path=/relay/YOUR_PATH&mode=auto&extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D#net
 ```
 
 ### این‌ها را عوض کن
@@ -304,7 +304,7 @@ vless://UUID@YOUR_NETLIFY_DOMAIN:443?encryption=none&security=tls&sni=YOUR_NETLI
 |---|---|
 | `UUID` | UUID خودت |
 | `YOUR_NETLIFY_DOMAIN` | دامنه Netlify خودت، مثل `your-site.netlify.app` |
-| `YOUR_PATH` | مسیر بک‌اند خودت |
+| `YOUR_PATH` | مسیر بعد از `/relay/` (مثال: `xhttp`) |
 
 
 دامنه برای sni - adress

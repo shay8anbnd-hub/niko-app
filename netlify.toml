@@ -4,4 +4,14 @@
 
 [[edge_functions]]
   function = "relay"
-  path = "/*"
+  path = "/relay/*"
+
+[[redirects]]
+  from = "/xhttp/*"
+  to = "/relay/:splat"
+  status = 307
+
+[[redirects]]
+  from = "/proxy/*"
+  to = "/relay/:splat"
+  status = 307

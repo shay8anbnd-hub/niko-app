@@ -275,9 +275,9 @@ netlify deploy --prod
 
 | What you open | What it forwards to |
 |---|---|
-| `https://your-site.netlify.app/` | `https://your-domain.com:443/` |
-| `https://your-site.netlify.app/path` | `https://your-domain.com:443/path` |
-| `https://your-site.netlify.app/api/test` | `https://your-domain.com:443/api/test` |
+| `https://your-site.netlify.app/relay/` | `https://your-domain.com:443/` |
+| `https://your-site.netlify.app/relay/path` | `https://your-domain.com:443/path` |
+| `https://your-site.netlify.app/relay/api/test` | `https://your-domain.com:443/api/test` |
 
 ---
 
@@ -286,7 +286,7 @@ netlify deploy --prod
 Replace placeholders with your own values.
 
 ```txt
-vless://UUID@xxxxx=SNi:443?encryption=none&security=tls&sni=xxx&fp=chrome&alpn=h2%2Chttp%2F1.1&insecure=0&allowInsecure=0&type=xhttp&host=YOUR_NETLIFY_DOMAIN&path=YOUR_PATH&mode=auto&extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D#net
+vless://UUID@xxxxx=SNi:443?encryption=none&security=tls&sni=xxx&fp=chrome&alpn=h2%2Chttp%2F1.1&insecure=0&allowInsecure=0&type=xhttp&host=YOUR_NETLIFY_DOMAIN&path=/relay/YOUR_PATH&mode=auto&extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D#net
 ```
 
 ### Replace these
@@ -295,7 +295,7 @@ vless://UUID@xxxxx=SNi:443?encryption=none&security=tls&sni=xxx&fp=chrome&alpn=h
 |---|---|
 | `UUID` | Your UUID |
 | `YOUR_NETLIFY_DOMAIN` | Your Netlify domain, for example `your-site.netlify.app` |
-| `YOUR_PATH` | Your backend path |
+| `YOUR_PATH` | Relay path after `/relay/` (example: `xhttp`) |
 
 
 Use this sni - adress for your config:

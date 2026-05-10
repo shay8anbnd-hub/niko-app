@@ -1,4 +1,5 @@
 const TARGET_BASE = (Netlify.env.get("TARGET_DOMAIN") || "").replace(/\/$/, "");
+const RELAY_PREFIX = "/relay";
 
 const STRIP_HEADERS = new Set([
   "host",
@@ -23,7 +24,10 @@ export default async function handler(request) {
 
   try {
     const url = new URL(request.url);
-    const targetUrl = TARGET_BASE + url.pathname + url.search;
+    const relayPath = url.pathname.startsWith(RELAY_PREFIX)
+      ? url.pathname.slice(RELAY_PREFIX.length) || "/"
+      : url.pathname;
+    const targetUrl = TARGET_BASE + relayPath + url.search;
 
     const headers = new Headers();
     let clientIp = null;
