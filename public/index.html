@@ -3,10 +3,117 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Netlify Relay</title>
+    <title>Midnight Observatory</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #05060f;
+        --panel: rgba(16, 20, 45, 0.62);
+        --text: #edf2ff;
+        --muted: #b6c0e8;
+        --accent: #6b8cff;
+        --accent-2: #9f7bff;
+        --border: rgba(170, 188, 255, 0.24);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(1200px 700px at 85% -10%, rgba(124, 90, 255, 0.35), transparent),
+          radial-gradient(1000px 700px at -20% 20%, rgba(43, 133, 255, 0.32), transparent),
+          var(--bg);
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+      }
+      .card {
+        width: min(760px, 100%);
+        background: var(--panel);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(8px);
+        border-radius: 20px;
+        padding: clamp(1.25rem, 2vw, 2rem);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      }
+      .badge {
+        display: inline-block;
+        padding: 0.35rem 0.65rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      h1 {
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        margin: 0.9rem 0;
+        line-height: 1.15;
+      }
+      p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .grid {
+        margin-top: 1.2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 0.75rem;
+      }
+      .tile {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 0.8rem;
+        background: rgba(8, 12, 30, 0.55);
+      }
+      .tile strong { display: block; margin-bottom: 0.35rem; color: #dbe4ff; }
+      .quote {
+        margin-top: 1.1rem;
+        border-left: 3px solid var(--accent);
+        padding-left: 0.8rem;
+        color: #d3dcff;
+      }
+      .glow {
+        color: transparent;
+        background: linear-gradient(92deg, var(--accent), var(--accent-2));
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+      footer { margin-top: 1rem; font-size: 0.9rem; color: #99a7dd; }
+    </style>
   </head>
   <body>
-    <h1>Netlify Relay</h1>
-    <p>The Edge Function is configured on <code>/*</code>.</p>
+    <main class="card" role="main">
+      <span class="badge">Random Topic · Space Journal</span>
+      <h1>Welcome to the <span class="glow">Midnight Observatory</span></h1>
+      <p>
+        Tonight's sky reminds us that patience builds discovery. Every star you see is old light,
+        finally reaching a curious eye.
+      </p>
+      <section class="grid" aria-label="sky highlights">
+        <article class="tile"><strong>Moon Phase</strong><span id="moon"></span></article>
+        <article class="tile"><strong>Sky Tip</strong><span id="tip"></span></article>
+        <article class="tile"><strong>Focus Time</strong><span id="focus"></span></article>
+      </section>
+      <p class="quote" id="quote"></p>
+      <footer>Crafted as a lightweight static page for fast, reliable hosting.</footer>
+    </main>
+    <script>
+      const moonPhases = ["New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous", "Full Moon", "Waning Gibbous", "Last Quarter", "Waning Crescent"];
+      const skyTips = ["Let your eyes adjust for 15 minutes before stargazing.", "Use red-tinted light to preserve night vision.", "Cloud gaps can reveal bright planets near the horizon.", "A simple pair of binoculars can transform your sky view."];
+      const quotes = [
+        "Not all journeys are measured in miles—some are measured in moments of wonder.",
+        "The night sky is a reminder that quiet things can still be magnificent.",
+        "Curiosity is the telescope of the mind.",
+      ];
+
+      const day = new Date().getUTCDate();
+      document.getElementById("moon").textContent = moonPhases[day % moonPhases.length];
+      document.getElementById("tip").textContent = skyTips[day % skyTips.length];
+      document.getElementById("focus").textContent = `${20 + (day % 3) * 10} minutes of sky watching`;
+      document.getElementById("quote").textContent = quotes[day % quotes.length];
+    </script>
   </body>
 </html>
