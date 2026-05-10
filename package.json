@@ -1,12 +1,13 @@
 {
-  "name": "netlify-xhttp-relay",
-  "version": "1.0.0",
-  "description": "Netlify Edge Function HTTP relay for your own upstream service",
+  "name": "niko-edge-gateway",
+  "version": "1.1.0",
+  "description": "Netlify Edge gateway for routing HTTP requests to a configured upstream target",
   "private": true,
   "license": "MIT",
   "scripts": {
     "dev": "netlify dev",
-    "build": "echo 'No build step required'"
+    "build": "echo 'No build step required'",
+    "lint": "echo 'No lint script configured'"
   },
   "devDependencies": {
     "netlify-cli": "latest"
